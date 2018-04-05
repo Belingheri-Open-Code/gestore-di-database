@@ -9,10 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <?php
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "dbname";
+include ("./credenziali.php");
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

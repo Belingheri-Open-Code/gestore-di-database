@@ -1,8 +1,7 @@
 <?php
-if(!isset($_COOKIE["log"])) {
-    $cookie_name = "log";
-	$cookie_value = "false";
-	setcookie($cookie_name, $cookie_value);
+session_start();
+if(!isset($_SESSION["log"])) {
+    $_SESSION["log"]="false";
 }
 ?>
 <!DOCTYPE html>
@@ -22,7 +21,7 @@ if(!isset($_COOKIE["log"])) {
 									<form action="" method="post">
 										<div class="form-group">
 											<label for="password">Password :</label>
-											<input type="password" class="form-control" placeholder='password' name="pass" <?php if(!$_COOKIE["log"]=="true") echo"required"; ?>>
+											<input type="password" class="form-control" placeholder='password' name="pass" <?php if(!$_SESSION["log"]=="true") echo"required"; ?>>
 											</div>
 											<div class="form-group">
 												<label for="comment">SQL:</label>
@@ -32,13 +31,11 @@ if(!isset($_COOKIE["log"])) {
 										</form>
 
 <?php
-if (isset($_POST["pass"])||$_COOKIE["log"])
+if (isset($_POST["pass"])||isset($_SESSION["log"]))
 	{
-	if ($_POST["pass"] == "password"||$_COOKIE["log"]=="true")
+	if ($_POST["pass"] == "password"||$_SESSION["log"]=="true")
 		{
-		$cookie_name = "log";
-		$cookie_value = "true";
-		setcookie($cookie_name, $cookie_value);
+		$_SESSION["log"]="true";
 		include ("./credenziali.php");
 		$conn = new mysqli($servername, $username, $password, $dbname);
 		if ($conn->connect_error)
@@ -93,7 +90,8 @@ if (isset($_POST["pass"])||$_COOKIE["log"])
 		$conn->close();
 		}
 		else{
-		echo "<h2>Password errata<h2><small>non cancellare mai i cookie ;)</small>";}
+		if (isset($_POST["pass"] )){
+		echo "<h2>Password errata<h2><small>non cancellare mai i cookie ;)</small>";}}
 	}
 ?>
 									</div>

@@ -18,18 +18,18 @@ if(!isset($_COOKIE["log"])) {
 				<body>
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-sm-5">
-								<form action="" method="post">
-									<div class="form-group">
-										<label for="password">Password :</label>
-										<input type="password" class="form-control" placeholder='password' name="pass" <?php if(!$_COOKIE["log"]=="true") echo"required"; ?>>
-										</div>
+							<div class="col-sm-5" style="position:relative">
+									<form action="" method="post">
 										<div class="form-group">
-											<label for="comment">SQL:</label>
-											<textarea style="resize:none;" class='form-control'  placeholder='descrizione' name='descrizione' required></textarea>
-										</div>
-										<button id="buttonForm" type="submit" class="btn btn-default" >Invia</button>
-									</form>
+											<label for="password">Password :</label>
+											<input type="password" class="form-control" placeholder='password' name="pass" <?php if(!$_COOKIE["log"]=="true") echo"required"; ?>>
+											</div>
+											<div class="form-group">
+												<label for="comment">SQL:</label>
+												<textarea style="resize:none;" class='form-control'  placeholder='descrizione' name='descrizione' required></textarea>
+											</div>
+											<button id="buttonForm" type="submit" class="btn btn-default" >Invia</button>
+										</form>
 
 <?php
 if (isset($_POST["pass"])||$_COOKIE["log"])
@@ -48,7 +48,7 @@ if (isset($_POST["pass"])||$_COOKIE["log"])
 		$sql = $_POST["descrizione"];
 		try
 			{
-			echo "<p>".$sql."</p><br>";
+			echo "<br><p>".$sql."</p><br>";
 			$struttura = $conn->query($sql);
 			if (is_bool($struttura))
 				{

@@ -56,17 +56,23 @@ $conn1->close();
 <?php
 include ("./credenziali.php");
 try{
+	
 	$conn = new mysqli($servername, $username, $password, $dbname);
 	if ($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
 	$sql = "SHOW TABLES";
 	$result = $conn->query($sql);
+	$mn=0;
 	while($row = $result->fetch_assoc()) {
 		$i=0;
 	   $tablename=$row['Tables_in_'.$dbname];
-	   echo "<h2>Nome: <b>$tablename</b></h2>
-			<table class='table table-striped'>";
+	   echo "<h2>Nome tabella: <b>$tablename</b></h2>
+			<button id='dati$mn' type='button' class='btn'>Dati</button>
+			<button id='strutt$mn' type='button' class='btn'>Struttura</button>
+			<div>
+			<table class='table table-hover'>
+			<thead id='$mn' style='display: none;'><tr><th  scope='col'> Struttura:</th></tr>";
 	   $richiedistruttura="SHOW COLUMNS FROM $tablename";
 	   $struttura = $conn->query($richiedistruttura);
 	   while($row = $struttura->fetch_assoc()) {
@@ -86,7 +92,8 @@ try{
 		}
 		$datisql="SELECT * FROM $tablename";
 		$dati = $conn->query($datisql);
-		echo "<tr><th  scope='col'> Dati:</th></tr><tr>";
+		echo "</thead>
+				<tbody id='tb$mn' style='display: none;'><tr><th  scope='col'> Dati:</th></tr><tr>";
 		$i=0;
 		while($row = $dati->fetch_assoc()) {
 			if($i==0){
@@ -103,7 +110,16 @@ try{
 				}
 			echo "</tr>";
 		}
-		echo "</table><hr>";
+		echo "</tbody></table></div><hr>
+		<script>
+		$( '#dati$mn' ).click(function() {
+		  $( '#tb$mn' ).toggle( 'fast');
+		});
+		$( '#strutt$mn' ).click(function() {
+		  $( 'thead#$mn' ).toggle('fast');
+		});
+		</script>";
+		$mn++;
 	}
 	$conn->close();
 	}catch(Exception $e)

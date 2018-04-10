@@ -1,105 +1,47 @@
-<?php
-session_start();
-if(!isset($_SESSION["log"])) {
-    $_SESSION["log"]="false";
-}
-?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Belingheri DB</title>
-		<meta charset="utf-8">
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-				<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-					<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-					<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-				</head>
-				<body>
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-sm-5" style="position:relative">
-									<form action="" method="post">
-										<div class="form-group">
-											<label for="password">Password :</label>
-											<input type="password" class="form-control" placeholder='password' name="pass" <?php if(!$_SESSION["log"]=="true") echo"required"; ?>>
-											</div>
-											<div class="form-group">
-												<label for="comment">SQL:</label>
-												<textarea style="resize:none;" class='form-control'  placeholder='descrizione' name='descrizione' required></textarea>
-											</div>
-											<button id="buttonForm" type="submit" class="btn btn-default" >Invia</button>
-										</form>
-
-<?php
-if (isset($_POST["pass"])||isset($_SESSION["log"]))
-	{
-	if ($_POST["pass"] == "password"||$_SESSION["log"]=="true")
-		{
-		$_SESSION["log"]="true";
-		include ("./credenziali.php");
-		$conn = new mysqli($servername, $username, $password, $dbname);
-		if ($conn->connect_error)
-			{
-			die("Connection failed: " . $conn->connect_error);
-			}
-		$sql = $_POST["descrizione"];
-		try
-			{
-			echo "<br><p>".$sql."</p><br>";
-			$struttura = $conn->query($sql);
-			if (is_bool($struttura))
-				{
-				if ($struttura) echo "<p>Corretto - " . $conn->affected_rows . " righe alterate</p><br>";
-				  else echo $conn->error;
-				}
-			  else
-				{
-				$i = 0;
-				while ($row = $struttura->fetch_assoc())
-					{
-					if ($i == 0)
-						{
-						echo "<table class='table table-striped'><thead><tr>";
-						foreach($row as $key => $value)
-							{
-							echo "<th scope='col'>" . $key . "</th>";
-							}
-
-						echo "</tr></thead><tbody>";
-						$i++;
-						}
-
-					echo "<tr>";
-					foreach($row as $value)
-						{
-						echo "<td>" . $value . "</td>";
-						}
-
-					echo "</tr>";
-					}
-
-				echo "</tbody></table>";
-				}
-			}
-
-		catch(Exception $e)
-			{
-			echo 'Message: ' . $e->getMessage();
-			}
-
-		$conn->close();
-		}
-		else{
-		if (isset($_POST["pass"] )){
-		echo "<h2>Password errata<h2><small>non cancellare mai i cookie ;)</small>";}}
-	}
-?>
-									</div>
-									<div class="col-sm-7">
-										<?php include("./show.php"); ?>
-									</div>
-								</div>
-							</div>
-						</body>
-					</html>
-
+<?php
+include("./credenziali.php");
+if (isset($_GET["Logout"])){session_destroy();}
+include("./template/header.php");
+if(isset($_POST["id"])&&isset($_POST["pwd"]))
+{
+	if($_POST["id"]==$userFrom && $_POST["pwd"]==$passFrom){
+		$_SESSION["loggato"]=true;
+		header("location: ./query.php");
+	}
+	else{
+		$_SESSION["loggato"]=false;
+		echo "<h2>Password o id sbagliato riprova!</h2><hr>";
+	}
+}
+?>
+</head>
+<body>
+	<?php
+	if (!isset($_SESSION["loggato"])){
+		$_SESSION["loggato"]=false;
+	}
+	?>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6" >
+				<form action="" method="post">
+				    <div class="form-group">
+				      <label for="id">Nome:</label>
+				      <input name="id" type="text" class="form-control" id="id" placeholder="userFrom" required="required" value="admin">
+				    </div>
+				    <div class="form-group">
+				      <label for="pwd">Password:</label>
+				      <input type="password" class="form-control" id="pwd" name="pwd" placeholder="passFrom" required="required">
+				    </div>
+				    <button id="buttonForm" type="submit" class="btn btn-default" >Invia</button>
+				</form>
+			</div>
+			<div class="col-sm-6" >
+				<h1>Ciao! Benvenuto in in questo gestionale di DB</h1>
+				<p>Se vuoi contribuire allo sviluppo del codice visita il repository su gitHub e contribusci</p>
+				<a href="https://github.com/Belingheri-Open-Code/gestore-di-database">Vai su GitHub</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Belingheri DB</title>
-    <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<?php include("./template/header.php");?>
 </head>
 <body>
 <?php
@@ -21,6 +13,9 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
         foreach ($row as $value) {
                 echo "<option value='".$value."'>".$value."</option>";
+                if ($_SESSION['dbname']==""){
+                	$_SESSION['dbname']=$value;
+                }
         }
     }
 	echo "</select>";
@@ -55,6 +50,8 @@ $conn1->close();
 </script>
 <?php
 include ("./credenziali.php");
+if($_SESSION["loggato"]!=true)
+	header("location: ./index.php");
 try{
 	
 	$conn = new mysqli($servername, $username, $password, $dbname);
@@ -67,7 +64,7 @@ try{
 	while($row = $result->fetch_assoc()) {
 		$i=0;
 	   $tablename=$row['Tables_in_'.$dbname];
-	   echo "<h2>Nome tabella: <b>$tablename</b></h2>
+	   echo "<h4>Nome tabella: <b>$tablename</b></h4>
 			<button id='dati$mn' type='button' class='btn'>Dati</button>
 			<button id='strutt$mn' type='button' class='btn'>Struttura</button>
 			<div>
@@ -126,4 +123,5 @@ try{
 			{
 			echo 'Seleziona un database';
 			}
+	echo "<form action='./index.php?Logout=true'><button class='btn btn-secondary btn-sm' type='submit'>Logout</button></form>";
 ?>

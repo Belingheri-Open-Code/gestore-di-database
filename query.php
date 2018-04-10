@@ -73,8 +73,8 @@ if (isset($_POST["descrizione"]))
 }
 ?>
 									<br><hr>
-									<form action="./index.php?Logout=true">
-										<button class='btn btn-secondary btn-sm' type="submit">Logout</button>
+									<form action="./index.php" method="get">
+										<button class='btn btn-secondary btn-sm' type="submit" name="Logout">Logout</button>
 									</form>
 									</div>
 									<div class="col-sm-7">

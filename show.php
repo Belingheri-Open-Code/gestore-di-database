@@ -123,5 +123,7 @@ try{
 			{
 			echo 'Seleziona un database';
 			}
-	echo "<form action='./index.php?Logout=true'><button class='btn btn-secondary btn-sm' type='submit'>Logout</button></form>";
+	echo "<form action='./index.php' method='get'>
+										<button class='btn btn-secondary btn-sm' type='submit' name='Logout'>Logout</button>
+									</form>";
 ?>

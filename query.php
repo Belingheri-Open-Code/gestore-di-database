@@ -4,6 +4,9 @@ include("./template/header.php");
 ?>
 
 				</head>
+<?php
+include("./template/navbar.php");
+?>
 				<body>
 					<div class="container-fluid">
 						<div class="row">

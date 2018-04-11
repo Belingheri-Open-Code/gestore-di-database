@@ -1,5 +1,8 @@
 <?php include("./template/header.php");?>
 </head>
+<?php
+include("./template/navbar.php");
+?>
 <body>
 <?php
 include ("./credenziali.php");

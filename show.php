@@ -189,38 +189,39 @@ try{
 				<tbody id='tb$mn' style='display: none;'><tr><th  scope='col'> Dati:</th></tr><tr>";
 
 		$i=0;
+		if (!is_bool($dati)){
+			while($row = $dati->fetch_assoc()) {
 
-		while($row = $dati->fetch_assoc()) {
+				if($i==0){
 
-			if($i==0){
+					echo "<tr>";
+
+					foreach ($row as $key=>$value) {
+
+						echo "<th scope='col' >".$key."</th>";
+
+					}
+
+					echo "</tr>";
+
+					$i++;
+
+				}
 
 				echo "<tr>";
 
-				foreach ($row as $key=>$value) {
+					foreach ($row as  $value) {
 
-					echo "<th scope='col' >".$key."</th>";
+						echo "<td>".$value."</td>";
 
-				}
+					}
 
 				echo "</tr>";
 
-				$i++;
-
 			}
 
-			echo "<tr>";
-
-				foreach ($row as  $value) {
-
-					echo "<td>".$value."</td>";
-
-				}
-
-			echo "</tr>";
-
+			echo "</tbody></table></div><hr>";
 		}
-
-		echo "</tbody></table></div><hr>";
 
 		$mn++;
 

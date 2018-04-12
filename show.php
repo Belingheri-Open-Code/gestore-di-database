@@ -65,11 +65,11 @@ try{
 		$i=0;
 	   $tablename=$row['Tables_in_'.$dbname];
 	   echo "<h4>Nome tabella: <b>$tablename</b></h4>
-			<button id='dati$mn' type='button' class='btn'>Dati</button>
-			<button id='strutt$mn' type='button' class='btn'>Struttura</button>
+			<button id='dati$mn' type='button' class='btn'onclick='struttToggle(\"tb$mn\")'>Dati</button>
+			<button id='strutt$mn' type='button' class='btn' onclick='struttToggle(\"th$mn\")'>Struttura</button>
 			<div>
 			<table class='table table-hover'>
-			<thead id='$mn' style='display: none;'><tr><th  scope='col'> Struttura:</th></tr>";
+			<thead id='th$mn' style='display: none;'><tr><th  scope='col'> Struttura:</th></tr>";
 	   $richiedistruttura="SHOW COLUMNS FROM $tablename";
 	   $struttura = $conn->query($richiedistruttura);
 	   while($row = $struttura->fetch_assoc()) {
@@ -107,15 +107,7 @@ try{
 				}
 			echo "</tr>";
 		}
-		echo "</tbody></table></div><hr>
-		<script>
-		$( '#dati$mn' ).click(function() {
-		  $( '#tb$mn' ).toggle( 'fast');
-		});
-		$( '#strutt$mn' ).click(function() {
-		  $( 'thead#$mn' ).toggle('fast');
-		});
-		</script>";
+		echo "</tbody></table></div><hr>";
 		$mn++;
 	}
 	$conn->close();
@@ -123,7 +115,10 @@ try{
 			{
 			echo 'Seleziona un database';
 			}
-	echo "<form action='./index.php' method='get'>
-										<button class='btn btn-secondary btn-sm' type='submit' name='Logout'>Logout</button>
-									</form>";
+	echo "<form action='./index.php?Logout=true'><button class='btn btn-secondary btn-sm' type='submit'>Logout</button></form>";
 ?>
+<script>
+        function struttToggle (idstrtutt) {
+		  $('#'+idstrtutt ).toggle('fast');
+		};
+</script>

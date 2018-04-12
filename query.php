@@ -4,10 +4,20 @@ include("./template/header.php");
 ?>
 
 				</head>
+<?php
+include("./template/navbar.php");
+?>
 				<body>
+                <script>
+                             $( "#mostra" ).click(function() {
+                            $( "#querySql" ).show( "fast"); });
+                            
+                            $( "#nascondi" ).click(function() {
+                            $( "#querySql" ).hide( "fast"); });
+                            </script>
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-sm-5" >
+							<div class="col-sm-5" id="querySql" >
 									<form action="" method="post">
 										<div class="form-group">
 											<label for="comment">SQL:</label>
@@ -73,8 +83,8 @@ if (isset($_POST["descrizione"]))
 }
 ?>
 									<br><hr>
-									<form action="./index.php" method="get">
-										<button class='btn btn-secondary btn-sm' type="submit" name="Logout">Logout</button>
+									<form action="./index.php?Logout=true">
+										<button class='btn btn-secondary btn-sm' type="submit">Logout</button>
 									</form>
 									</div>
 									<div class="col-sm-7">
@@ -82,6 +92,7 @@ if (isset($_POST["descrizione"]))
 									</div>
 								</div>
 							</div>
+                            
 						</body>
 					</html>
 

@@ -10,10 +10,16 @@ include("./template/navbar.php");
 				<body>
                 <script>
                              $( "#mostra" ).click(function() {
-                            $( "#querySql" ).show( "fast"); });
+                            $( "#querySql" ).show( "fast"); 
+                            $( "#mostrali" ).addClass( "active" );
+                            $( "#nascondili" ).removeClass( "active" );
+                            });
                             
                             $( "#nascondi" ).click(function() {
-                            $( "#querySql" ).hide( "fast"); });
+                            $( "#querySql" ).hide( "fast"); 
+                           $( "#nascondili" ).addClass( "active" );
+                            $( "#mostrali" ).removeClass( "active" );
+                            });
                             </script>
 					<div class="container-fluid">
 						<div class="row">

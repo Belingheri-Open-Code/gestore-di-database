@@ -5,7 +5,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li ><a href="./query.php">Fai la query</a></li>
-      <li><a href="./visualizza.php">Mostra DB</a></li>
+      <li><a href="./mostra.php">Mostra DB</a></li>
       <li><a href="./index.php?Logout="  class="btn btn-primary " style="color: black;" >Logout</a></li>
     </ul>
   </div>

@@ -48,7 +48,7 @@ if(isset($_POST["id"])&&isset($_POST["pwd"]))
 
 		<div class="row">
 
-			<div class="col-sm-6" >
+			<div class="col-sm-6" id='query' >
 
 				<form action="" method="post">
 

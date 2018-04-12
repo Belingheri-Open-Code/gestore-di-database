@@ -10,7 +10,7 @@ include("./template/navbar.php");
 				<body>
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-sm-5" >
+							<div class="col-sm-5" id="querySql" >
 									<form action="" method="post">
 										<div class="form-group">
 											<label for="comment">SQL:</label>
@@ -85,6 +85,14 @@ if (isset($_POST["descrizione"]))
 									</div>
 								</div>
 							</div>
+                            <script>
+                            function mostra(){
+                            	$( '#querySql' ).show('fast');
+                            }
+                            function nascondi(){
+                            $( '#querySql' ).hide('fast');
+                            }
+                            </script>
 						</body>
 					</html>
 

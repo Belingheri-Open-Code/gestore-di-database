@@ -1,8 +1,3 @@
-<?php include("./template/header.php");?>
-
-</head>
-
-<body>
 <script>
         function struttToggle (idstrtutt) {
 		  $('#'+idstrtutt ).toggle('fast');

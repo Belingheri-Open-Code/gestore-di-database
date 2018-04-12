@@ -1,12 +1,12 @@
 <?php
 session_start();
 //credenziali per il form di login
-$userFrom="your_username_for_the_Form";
-$passFrom="your_password_for_the_Form";
+$userFrom="a";
+$passFrom="a";
 // credenziali per il DataBase
 $servername = "localhost";
-$username = "your_username";
-$password = "your_password";
+$username = "belingheri";
+$password = "";
 
 if (isset($_POST['dbname'])) 
 {

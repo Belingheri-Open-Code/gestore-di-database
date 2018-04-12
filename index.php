@@ -2,7 +2,7 @@
 
 include("./credenziali.php");
 
-if (isset($_GET["Logout"])){session_unset(); session_destroy();}
+if (isset($_GET["Logout"])){session_destroy();}
 
 include("./template/header.php");
 
@@ -10,7 +10,7 @@ if(isset($_POST["id"])&&isset($_POST["pwd"]))
 
 {
 
-	if($_POST["id"]==$userFrom && $_POST["pwd"]==$passFrom){
+	if($_POST["id"]==strtolower ($userFrom) && $_POST["pwd"]==strtolower ($passFrom)){
 
 		$_SESSION["loggato"]=true;
 
@@ -48,7 +48,7 @@ if(isset($_POST["id"])&&isset($_POST["pwd"]))
 
 		<div class="row">
 
-			<div class="col-sm-6" >
+			<div class="col-sm-6" id='query' >
 
 				<form action="" method="post">
 
@@ -56,7 +56,7 @@ if(isset($_POST["id"])&&isset($_POST["pwd"]))
 
 				      <label for="id">Nome:</label>
 
-				      <input name="id" type="text" class="form-control" id="id" placeholder="userFrom" required="required" >
+				      <input name="id" type="text" class="form-control" id="id" placeholder="userFrom" required="required">
 
 				    </div>
 

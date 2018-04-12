@@ -92,7 +92,16 @@ if (isset($_POST["descrizione"]))
 									</div>
 								</div>
 							</div>
-                            
+                            <script>
+                            function mostra(){
+                            	$( '#querySql' ).show('fast');
+                            }
+                            function nascondi(){
+                            $( '#querySql' ).hide('fast');
+                            }
+                            </script>
+                  
+
 						</body>
 					</html>
 

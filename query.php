@@ -8,6 +8,13 @@ include("./template/header.php");
 include("./template/navbar.php");
 ?>
 				<body>
+                <script>
+                             $( "#mostra" ).click(function() {
+                            $( "#querySql" ).show( "fast"); });
+                            
+                            $( "#nascondi" ).click(function() {
+                            $( "#querySql" ).hide( "fast"); });
+                            </script>
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-5" id="querySql" >
@@ -93,6 +100,8 @@ if (isset($_POST["descrizione"]))
                             $( '#querySql' ).hide('fast');
                             }
                             </script>
+                  
+
 						</body>
 					</html>
 

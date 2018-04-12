@@ -4,19 +4,36 @@ include("./template/header.php");
 ?>
 
 				</head>
+<?php
+include("./template/navbar.php");
+?>
 				<body>
+                <script>
+                             $( "#mostra" ).click(function() {
+                            $( "#querySql" ).show( "fast"); 
+                            $( "#mostrali" ).addClass( "active" );
+                            $( "#nascondili" ).removeClass( "active" );
+                            });
+                            
+                            $( "#nascondi" ).click(function() {
+                            $( "#querySql" ).hide( "fast"); 
+                           $( "#nascondili" ).addClass( "active" );
+                            $( "#mostrali" ).removeClass( "active" );
+                            });
+                            </script>
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-sm-5" >
+							<div class="col-sm-5" id="querySql" >
 									<form action="" method="post">
 										<div class="form-group">
 											<label for="comment">SQL:</label>
-											<textarea style="resize:none;" class='form-control'  placeholder='descrizione' name='descrizione' required></textarea>
+											<textarea  id="tags" style="resize:none;" class='form-control'  placeholder='descrizione' name='descrizione' required></textarea>
 										</div>
 										<button id="buttonForm" type="submit" class="btn btn-default" >Invia</button>
 									</form>
 
 <?php
+include("suggerimenti.php");
 if (isset($_POST["descrizione"]))
 {
 	include ("./credenziali.php");
@@ -82,6 +99,16 @@ if (isset($_POST["descrizione"]))
 									</div>
 								</div>
 							</div>
+                            <script>
+                            function mostra(){
+                            	$( '#querySql' ).show('fast');
+                            }
+                            function nascondi(){
+                            $( '#querySql' ).hide('fast');
+                            }
+                            </script>
+                  
+
 						</body>
 					</html>
 

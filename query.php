@@ -27,12 +27,13 @@ include("./template/navbar.php");
 									<form action="" method="post">
 										<div class="form-group">
 											<label for="comment">SQL:</label>
-											<textarea style="resize:none;" class='form-control'  placeholder='descrizione' name='descrizione' required></textarea>
+											<textarea  id="tags" style="resize:none;" class='form-control'  placeholder='descrizione' name='descrizione' required></textarea>
 										</div>
 										<button id="buttonForm" type="submit" class="btn btn-default" >Invia</button>
 									</form>
 
 <?php
+include("suggerimenti.php");
 if (isset($_POST["descrizione"]))
 {
 	include ("./credenziali.php");

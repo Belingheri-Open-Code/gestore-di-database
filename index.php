@@ -10,7 +10,7 @@ if(isset($_POST["id"])&&isset($_POST["pwd"]))
 
 {
 
-	if($_POST["id"]==strtolower ($userFrom) && $_POST["pwd"]==strtolower ($passFrom)){
+	if(strtolower( $_POST["id"])== $userFrom && $_POST["pwd"]==$passFrom){
 
 		$_SESSION["loggato"]=true;
 
@@ -48,7 +48,7 @@ if(isset($_POST["id"])&&isset($_POST["pwd"]))
 
 		<div class="row">
 
-			<div class="col-sm-6" >
+			<div class="col-sm-6" id='query' >
 
 				<form action="" method="post">
 

@@ -122,104 +122,107 @@ try{
 	$result = $conn->query($sql);
 
 	$mn=0;
+	if ($result->num_rows > 0) {
+		while($row = $result->fetch_assoc()) {
 
-	while($row = $result->fetch_assoc()) {
+			$i=0;
 
-		$i=0;
+		   $tablename=$row['Tables_in_'.$dbname];
 
-	   $tablename=$row['Tables_in_'.$dbname];
+		   echo "<h4>Nome tabella: <b>$tablename</b></h4>
 
-	   echo "<h4>Nome tabella: <b>$tablename</b></h4>
+				<button id='dati$mn' type='button' class='btn'onclick='struttToggle(\"tb$mn\")'>Dati</button>
+				
+				<button id='strutt$mn' type='button' class='btn' onclick='struttToggle(\"th$mn\")'>Struttura</button>
 
-			<button id='dati$mn' type='button' class='btn'onclick='struttToggle(\"tb$mn\")'>Dati</button>
-			
-			<button id='strutt$mn' type='button' class='btn' onclick='struttToggle(\"th$mn\")'>Struttura</button>
+				<div>
 
-			<div>
+				<table class='table table-hover'>
 
-			<table class='table table-hover'>
+				<thead id='th$mn' style='display: none;'><tr><th  scope='col'> Struttura:</th></tr>";
 
-			<thead id='th$mn' style='display: none;'><tr><th  scope='col'> Struttura:</th></tr>";
+		   $richiedistruttura="SHOW COLUMNS FROM $tablename";
 
-	   $richiedistruttura="SHOW COLUMNS FROM $tablename";
+		   $struttura = $conn->query($richiedistruttura);
+		   if ($struttura->num_rows > 0) {
 
-	   $struttura = $conn->query($richiedistruttura);
-
-	   while($row = $struttura->fetch_assoc()) {
-
-			if($i==0){
-
-			echo "<tr>";
-
-			foreach ($row as $key=>$value) {
-
-					echo "<th scope='col'>".$key."</th>";
-
-			}
-
-			echo "</tr>";
-
-			$i++;
-
-			}
-
-			echo "<tr>";
-
-			foreach ($row as $value) {
-
-					echo "<td>".$value."</td>";
-
-			}
-
-			echo "</tr>";
-
-		}
-
-		$datisql="SELECT * FROM $tablename";
-
-		$dati = $conn->query($datisql);
-
-		echo "</thead>
-
-				<tbody id='tb$mn' style='display: none;'><tr><th  scope='col'> Dati:</th></tr><tr>";
-
-		$i=0;
-		if (!is_bool($dati)){
-			while($row = $dati->fetch_assoc()) {
+		   while($row = $struttura->fetch_assoc()) {
 
 				if($i==0){
 
-					echo "<tr>";
+				echo "<tr>";
 
-					foreach ($row as $key=>$value) {
+				foreach ($row as $key=>$value) {
 
-						echo "<th scope='col' >".$key."</th>";
+						echo "<th scope='col'>".$key."</th>";
 
-					}
+				}
 
-					echo "</tr>";
+				echo "</tr>";
 
-					$i++;
+				$i++;
 
 				}
 
 				echo "<tr>";
 
-					foreach ($row as  $value) {
+				foreach ($row as $value) {
 
 						echo "<td>".$value."</td>";
 
-					}
+				}
 
 				echo "</tr>";
 
 			}
+			}
 
-			echo "</tbody></table></div><hr>";
+			$datisql="SELECT * FROM $tablename";
+
+			$dati = $conn->query($datisql);
+
+			echo "</thead>
+
+					<tbody id='tb$mn' style='display: none;'><tr><th  scope='col'> Dati:</th></tr><tr>";
+
+			$i=0;
+			if (!is_bool($dati)){
+				while($row = $dati->fetch_assoc()) {
+
+					if($i==0){
+
+						echo "<tr>";
+
+						foreach ($row as $key=>$value) {
+
+							echo "<th scope='col' >".$key."</th>";
+
+						}
+
+						echo "</tr>";
+
+						$i++;
+
+					}
+
+					echo "<tr>";
+
+						foreach ($row as  $value) {
+
+							echo "<td>".$value."</td>";
+
+						}
+
+					echo "</tr>";
+
+				}
+
+				echo "</tbody></table></div><hr>";
+			}
+
+			$mn++;
+
 		}
-
-		$mn++;
-
 	}
 
 	$conn->close();

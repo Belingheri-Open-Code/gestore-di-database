@@ -11,6 +11,7 @@ if ($table->num_rows > 0) {
 		$tablename=$row['Tables_in_'.$dbname];
 		$richiedistruttura="SHOW COLUMNS FROM $tablename";
 		$struttura = $conn2->query($richiedistruttura);
+		echo "\"$tablename\",\n";
 		if ($struttura->num_rows > 0) {
 
 			

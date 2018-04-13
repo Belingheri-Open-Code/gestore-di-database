@@ -2,7 +2,7 @@
 
 include("./credenziali.php");
 
-if (isset($_GET["Logout"])){session_destroy();}
+if (isset($_GET["Logout"])){session_unset();session_destroy();}
 
 include("./template/header.php");
 

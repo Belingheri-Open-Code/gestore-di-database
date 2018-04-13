@@ -69,6 +69,7 @@ $conn2->close();
       })
       .autocomplete({
         minLength: 1,
+	autoFocus: true,
         source: function( request, response ) {
           // delegate back to autocomplete, but extract the last term
           response( $.ui.autocomplete.filter(
@@ -91,4 +92,4 @@ $conn2->close();
         }
       });
   } );
-  </script>
+  </script>

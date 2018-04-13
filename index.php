@@ -2,7 +2,7 @@
 
 include("./credenziali.php");
 
-if ($userFrom=="default"||$passFrom=="default"||$username = "default")
+if ($userFrom=="default"||$passFrom=="default"||$username == "default")
 {
 header("location: ./config.php");
 }

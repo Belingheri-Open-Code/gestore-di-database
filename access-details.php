@@ -30,5 +30,5 @@
     $credentials_file = fopen('credenziali.php', 'w') or die("Errore nell'apertura del file");
     fwrite($credentials_file, $new_config_file_style);
     fclose($credentials_file);
-    header('Location: index.php?status=1');
-?>
+    header('Location: index.php');
+?>

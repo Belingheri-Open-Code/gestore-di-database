@@ -9,9 +9,9 @@ include("./template/header.php"); session_start();
 include("./template/navbar.php");
 ?>
     <body>
-    if($_SESSION["loggato"]!=true){
+    <?php if($_SESSION["loggato"]!=true){
       header("location: ./index.php");
-    }  
+    }  ?>
       
     <?php if($_GET['status'] == '1') { ?>
     <div class="container alert alert-success" role="alert" style="margin-top: 20px;">

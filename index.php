@@ -2,6 +2,11 @@
 
 include("./credenziali.php");
 
+if ($userFrom=="default"||$passFrom=="default"||$username = "default")
+{
+header("location: ./config.php");
+}
+
 if (isset($_GET["Logout"])){session_unset();session_destroy();}
 
 include("./template/header.php");

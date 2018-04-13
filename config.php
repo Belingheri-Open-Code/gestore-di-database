@@ -10,7 +10,9 @@ include("./template/navbar.php");
 ?>
     <body>
     <?php if($_SESSION["loggato"]!=true){
-      header("location: ./index.php");
+	if ($userFrom!="default"||$passFrom!="default"||$username != "default"){
+      		header("location: ./index.php");
+	}
     }  ?>
       
     <?php if($_GET['status'] == '1') { ?>

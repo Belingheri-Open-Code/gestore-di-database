@@ -9,3 +9,5 @@ Una versione alternativa di phpMyAdmin che permette di
 
 e tutto questo mentre scriviamo una query 
 [provalo](http://belingheri.altervista.org/data/index.php)
+
+[licenza](https://tldrlegal.com/license/bsd-3-clause-license-(revised)#summary)

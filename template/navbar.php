@@ -1,7 +1,13 @@
-<?php
-session_start();
-if($_SESSION["loggato"]!=true){
-	header("location: ./index.php");
+<?php 
+include("credenziali.php");
+$output = explode("/",$_SERVER['PHP_SELF']);
+$page= $output[count($output)-1];
+if ($page!="index.php"){
+	if($_SESSION["loggato"]!=true){
+		if ($userFrom!="default"||$passFrom!="default"||$username != "default"){
+        		header("location: ./index.php");
+		}
+	}  
 }
 ?>
 <nav class="navbar navbar-default">
@@ -10,10 +16,6 @@ if($_SESSION["loggato"]!=true){
       <a class="navbar-brand" href="./query.php">Belingheri DB</a>
     </div>
     <ul class="nav navbar-nav">
-    <?php  
-    $output = explode("/",$_SERVER['PHP_SELF']);
-	$page= $output[count($output)-1];
-    ?>
       <li id="mostrali"><a id="mostra" href='<?php if ($page=='config.php') echo "./query.php"; else echo "#"?> '>Fai la query</a></li>
       <li id="nascondili"><a id="nascondi" href='<?php if ($page=='config.php') echo "./query.php"; else echo "#"?> '>Mostra DB</a></li>
       <li><a href="./index.php?Logout="  class="btn btn-primary " style="color: black;" >Logout</a></li>

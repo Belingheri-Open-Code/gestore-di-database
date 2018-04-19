@@ -1,19 +1,16 @@
 <?php
 include("./template/header.php"); session_start();
 ?>
-<script>
-    $("#configurazione").addCalss("active");
-</script>
 				</head>
 <?php
 include("./template/navbar.php");
 ?>
     <body>
-    <?php if($_SESSION["loggato"]!=true){
-	if ($userFrom!="default"||$passFrom!="default"||$username != "default"){
-      		header("location: ./index.php");
-	}
-    }  ?>
+    <script>
+        $(document).ready(function(){
+        $("#configurazione").addClass("active");
+        });
+</script>
       
     <?php if($_GET['status'] == '1') { ?>
     <div class="container alert alert-success" role="alert" style="margin-top: 20px;">

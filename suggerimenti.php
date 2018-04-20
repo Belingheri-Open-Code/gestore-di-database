@@ -94,3 +94,10 @@ $conn2->close();
       });
   } );
   </script>
+  <!--//autoresize-->
+  <script src="./lib/jquery.autosize.js"></script>
+  <script>
+ $(function(){
+	 $('textarea').autosize();
+ });
+  </script>

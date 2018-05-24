@@ -56,14 +56,23 @@ if (isset($_POST["descrizione"]))
 	try
 		{
 		echo "<br><code>".$sql."</code><br>";
+		mysqli_autocommit($conn,TRUE);
+        	mysqli_query($conn,"START TRANSACTION");
 		$struttura = $conn->query($sql);
 		if (is_bool($struttura))
 			{
-			if ($struttura) echo "<p>Corretto - " . $conn->affected_rows . " righe alterate</p><br>";
-			  else echo $conn->error;
+			if ($struttura) { 
+				echo "<p>Corretto - " . $conn->affected_rows . " righe alterate</p><br>";
+				mysqli_query($conn,"COMMIT");
+			    }
+			  else {
+				  echo $conn->error . "<br>ROLLBACK fatto!";
+				  mysqli_query($conn,"ROLLBACK");
+			  }
 			}
 		  else
 			{
+			mysqli_query($conn,"COMMIT");
 			$i = 0;
 			while ($row = $struttura->fetch_assoc())
 				{
@@ -90,6 +99,7 @@ if (isset($_POST["descrizione"]))
 
 			echo "</tbody></table>";
 			}
+		mysqli_autocommit($conn,TRUE);
 		}
 
 	catch(Exception $e){echo 'Message: ' . $e->getMessage();		}

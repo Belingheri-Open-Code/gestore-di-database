@@ -2,7 +2,11 @@
 
 include("./template/header.php");
 ?>
-
+				<style>
+					div.ex3 {
+				    overflow: auto;
+						}
+					</style>
 				</head>
 <?php
 include("./template/navbar.php");
@@ -20,6 +24,10 @@ include("./template/navbar.php");
                            $( "#nascondili" ).addClass( "active" );
                             $( "#mostrali" ).removeClass( "active" );
                             });
+				 $(function(){
+					 $('textarea').autosize();
+					 $("#scroll").css("height",$(window).height()+"px");
+				 });
                             </script>
 					<div class="container-fluid">
 						<div class="row">
@@ -95,7 +103,9 @@ if (isset($_POST["descrizione"]))
 									</form>
 									</div>
 									<div class="col-sm-7">
+										<div id="scroll" class="ex3" > 
 										<?php include("./show.php"); ?>
+										</div>
 									</div>
 								</div>
 							</div>

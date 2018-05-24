@@ -12,6 +12,8 @@ include("./template/header.php");
 include("./template/navbar.php");
 ?>
 				<body>
+					<!--//autoresize-->
+  <script src="./lib/jquery.autosize.js"></script>
                 <script>
                              $( "#mostra" ).click(function() {
                             $( "#querySql" ).show( "fast"); 

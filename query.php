@@ -110,9 +110,9 @@ if (isset($_POST["descrizione"]))
 }
 ?>
 									<br><hr>
-									<form action="./index.php?Logout=true">
+									<a href="./index.php?Logout=true">
 										<button class='btn btn-secondary btn-sm' type="submit">Logout</button>
-									</form>
+									</a>
 									</div>
 									<div class="col-sm-7">
 										<div id="scroll" class="ex3" > 

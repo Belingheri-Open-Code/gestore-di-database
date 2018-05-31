@@ -234,6 +234,6 @@ try{
 			echo 'Seleziona un database';
 
 			}
-            echo "<form action='./index.php?Logout=true'><button class='btn btn-secondary btn-sm' type='submit'>Logout</button></form>";
+            echo "<a href='./index.php?Logout=true'><button class='btn btn-secondary btn-sm' type='submit'>Logout</button></a>";
  ?>
 
